@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistencia Eléctrica SAS | Expertos en Grupos de Medida</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --azul-corp: #2287EB;
+            --azul-dark: #1565C0;
+            --azul-deeper: #0D3F7A;
+            --rojo-corp: #FF3639;
+            --rojo-dark: #CC2B2E;
+            --gris-fondo: #f8f9fa;
+            --texto-oscuro: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--texto-oscuro);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section Moderna */
+        .hero-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #eef6ff 100%);
+            position: relative;
+        }
+
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 40%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(135deg, rgba(34, 135, 235, 0.05) 0%, rgba(34, 135, 235, 0.1) 100%);
+            clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .btn-cta {
+            background-color: var(--rojo-corp);
+            color: white;
+            padding: 15px 35px;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 54, 57, 0.3);
+            color: white;
+        }
+
+        /* Tarjetas de Servicios */
+        .service-card {
+            border: none;
+            border-radius: 15px;
+            padding: 40px 30px;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            height: 100%;
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--azul-corp);
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--texto-oscuro);
+        }
+
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .service-list li {
+            font-size: 14px;
+            color: #475569;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-list li:last-child { border-bottom: none; }
+
+        .service-card i {
+            color: var(--azul-corp);
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Sección Diferenciadora */
+        .diff-section {
+            background-color: #ffffff;
+            color: var(--texto-oscuro);
+            padding: 80px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        /* Timeline Proceso */
+        .timeline-container {
+            position: relative;
+            padding: 50px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%; width: 100%;
+            height: 2px; background: var(--azul-corp);
+            z-index: 1;
+        }
+
+        .step-node {
+            width: 20px; height: 20px;
+            background: var(--rojo-corp);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            position: relative; z-index: 2;
+        }
+
+        /* Galería Hover */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(34, 135, 235, 0.85);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.4s ease;
+            padding: 20px; text-align: center; color: white;
+        }
+
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            background-color: var(--rojo-corp);
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 30px;
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-4px) scale(1.07);
+            box-shadow: 0 12px 30px rgba(255,54,57,0.45);
+            color: white;
+        }
+
+        /* ══════════════════════════════════
+           STATS BAND — NUEVA SECCIÓN
+        ══════════════════════════════════ */
+        .stats-band {
+            background: var(--azul-corp);
+            padding: 70px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(34,135,235,0.10) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Grid lines de fondo */
+        .stats-band::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(34,135,235,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34,135,235,0.06) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .stats-band .container { position: relative; z-index: 1; }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px 10px;
+            position: relative;
+        }
+
+        .stat-item + .stat-item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 20%;
+            height: 60%;
+            width: 1px;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .stat-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: clamp(44px, 5.5vw, 68px);
+            line-height: 1;
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .stat-num .val-blue { color: rgba(255,255,255,0.85); }
+        .stat-num .val-red  { color: var(--rojo-corp); }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .stat-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px; height: 48px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 12px;
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        /* ══════════════════════════════════
+           CTA FINAL — NUEVA SECCIÓN
+        ══════════════════════════════════ */
+        .cta-final {
+            background: linear-gradient(135deg, var(--azul-deeper) 0%, var(--azul-corp) 50%, var(--azul-dark) 100%);
+            padding: 110px 0;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Grid de fondo */
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Orbes decorativos */
+        .cta-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            filter: blur(60px);
+            pointer-events: none;
+        }
+        .cta-orb-1 { width: 420px; height: 420px; top: -120px; left: -100px; }
+        .cta-orb-2 { width: 320px; height: 320px; bottom: -100px; right: -80px; }
+
+        .cta-final .cta-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            padding: 6px 18px;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .cta-label::before {
+            content: '';
+            width: 7px; height: 7px;
+            background: var(--rojo-corp);
+            border-radius: 50%;
+            animation: blink-dot 2s ease infinite;
+        }
+
+        @keyframes blink-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        .cta-final h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: clamp(34px, 4.5vw, 58px);
+            text-transform: uppercase;
+            color: white;
+            line-height: 1.05;
+            max-width: 760px;
+            margin: 0 auto 22px;
+        }
+
+        .cta-final h2 .cta-highlight { color: var(--rojo-corp); }
+
+        .cta-final p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.65);
+            max-width: 520px;
+            margin: 0 auto 50px;
+            line-height: 1.75;
+            font-weight: 400;
+        }
+
+        .btn-cta-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--rojo-corp);
+            color: white !important;
+            text-decoration: none;
+            padding: 20px 46px;
+            border-radius: 8px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 12px 40px rgba(255,54,57,0.4);
+        }
+
+        .btn-cta-main:hover {
+            background: var(--rojo-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(255,54,57,0.55);
+        }
+
+        .btn-cta-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: white !important;
+            text-decoration: none;
+            padding: 20px 46px;
+            border-radius: 8px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .btn-cta-ghost:hover {
+            border-color: rgba(255,255,255,0.75);
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-3px);
+        }
+
+        /* ══════════════════════════════════
+           FOOTER
+        ══════════════════════════════════ */
+        .site-footer {
+            background: #0a1420;
+            padding: 48px 0 28px;
+            border-top: 1px solid rgba(34,135,235,0.2);
+        }
+
+        .footer-brand strong {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-brand span {
+            display: block;
+            font-size: 11px;
+            color: var(--azul-corp);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.4);
+            font-size: 13.5px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--azul-corp); }
+
+        .footer-divider {
+            border-color: rgba(255,255,255,0.07);
+            margin: 28px 0 20px;
+        }
+
+        .footer-copy {
+            font-size: 12.5px;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+        }
+
+        .footer-copy a {
+            color: rgba(34,135,235,0.7);
+            text-decoration: none;
+        }
+
+        /* Counter animation */
+        .count-up { display: inline; }
+
+        @media (max-width: 768px) {
+            .stat-item + .stat-item::before { display: none; }
+            .cta-btns-wrap { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#" style="color: var(--azul-corp);">
+                ASISTENCIA ELÉCTRICA <span style="color: var(--rojo-corp);">SAS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+                    <li class="nav-item"><a class="btn-cta ms-lg-3 py-2 px-4" href="#contacto" style="font-size: 0.9rem;">Cotizar Ahora</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 hero-content">
+                    <h1 class="display-4 fw-800 mb-4">Instalación, Verificación y Adecuación de <span style="color: var(--azul-corp);">Grupos de Medida Eléctrica</span></h1>
+                    <p class="lead mb-5 text-muted">Líderes en instalación, adecuación y cumplimiento normativo para grupos de medida industriales y comerciales. Garantice la legalidad de su energía.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#contacto" class="btn btn-cta">Solicitar Visita Técnica</a>
+                        <a href="#servicios" class="btn btn-outline-primary py-3 px-4 fw-bold">Ver Especialidades</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="servicios" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Servicios Especializados</h2>
+                <div style="width: 60px; height: 4px; background: var(--rojo-corp); margin: 20px auto;"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                        <h3>Grupos de Medida Directos</h3>
+                        <ul class="service-list">
+                            <li>Instalación</li>
+                            <li>Configuración</li>
+                            <li>Revisión de exactitud</li>
+                            <li>Corrección de conexiones</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="fa-solid fa-microchip"></i>
+                        <h3>Grupos de Medida Semidirectos</h3>
+                        <ul class="service-list">
+                            <li>Instalación de transformadores de corriente (TC)</li>
+                            <li>Pruebas de relación y polaridad</li>
+                            <li>Configuración del sistema</li>
+                            <li>Verificación técnica</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="fa-solid fa-tower-broadcast"></i>
+                        <h3>Grupos de Medida Indirectos</h3>
+                        <ul class="service-list">
+                            <li>Integración con TC y TP</li>
+                            <li>Montaje en media tensión</li>
+                            <li>Cumplimiento normativo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="diff-section text-center">
+        <div class="container">
+            <h2 class="fw-bold mb-5" style="color: var(--azul-corp);">¿Por qué elegir Asistencia Eléctrica SAS?</h2>
+            <div class="row">
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h4 class="fw-bold" style="color: var(--azul-corp);">Cumplimiento</h4>
+                    <p class="small text-muted">Normativa técnica al 100%.</p>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h4 class="fw-bold" style="color: var(--azul-corp);">Agilidad</h4>
+                    <p class="small text-muted">Respuesta técnica inmediata.</p>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h4 class="fw-bold" style="color: var(--azul-corp);">Experiencia</h4>
+                    <p class="small text-muted">Personal certificado y experto.</p>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="fw-bold" style="color: var(--azul-corp);">Respaldo</h4>
+                    <p class="small text-muted">Seguimiento pos-instalación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         NUEVA SECCIÓN: ESTADÍSTICAS
+    ══════════════════════════════════════ -->
+    <div class="stats-band">
+        <div class="container">
+            <div class="row g-0">
+
+                <div class="col-6 col-lg-3">
+                    <div class="stat-item">
+                        <span class="stat-num">
+                            +<span class="count-up" data-target="500">500</span>
+                        </span>
+                        <p class="stat-label">Instalaciones ejecutadas</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <div class="stat-item">
+                        <span class="stat-num">
+                            +<span class="count-up val-red" data-target="10">10</span>
+                        </span>
+                        <p class="stat-label">Años de experiencia</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <div class="stat-item">
+                        <span class="stat-num">
+                            <span class="count-up" data-target="100">100</span>%
+                        </span>
+                        <p class="stat-label">Cumplimiento RETIE</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <div class="stat-item">
+                        <span class="stat-num">
+                            <span class="count-up val-red" data-target="48">48</span>h
+                        </span>
+                        <p class="stat-label">Respuesta técnica garantizada</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- FIN ESTADÍSTICAS -->
+
+    <section id="proyectos" class="py-5">
+        <div class="container py-5">
+            <h2 class="fw-bold text-center mb-5">Evidencia de Excelencia Técnica</h2>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="gallery-item bg-dark">
+                        <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a1930?auto=format&fit=crop&w=500" class="w-100 h-100 object-fit-cover" alt="Industrial">
+                        <div class="gallery-overlay">
+                            <h6>Adecuación Gran Consumidor</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item bg-dark">
+                        <img src="https://images.unsplash.com/photo-1498084393753-b411b2d26b34?auto=format&fit=crop&w=500" class="w-100 h-100 object-fit-cover" alt="Tableros">
+                        <div class="gallery-overlay">
+                            <h6>Montaje Semidirecto - Sector Textil</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item bg-dark">
+                        <img src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&w=500" class="w-100 h-100 object-fit-cover" alt="Medidor">
+                        <div class="gallery-overlay">
+                            <h6>Verificación Técnica de Redes</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- ══════════════════════════════════════
+         NUEVA SECCIÓN: CTA FINAL
+    ══════════════════════════════════════ -->
+    <section class="cta-final">
+        <div class="cta-orb cta-orb-1"></div>
+        <div class="cta-orb cta-orb-2"></div>
+
+        <div class="container cta-inner">
+            <div class="cta-label">Acción Inmediata</div>
+
+            <h2>
+                ¿Su empresa necesita instalar,<br>
+                actualizar o <span class="cta-highlight">regularizar</span><br>
+                su grupo de medida?
+            </h2>
+
+            <p>No espere sanciones ni rechazos del operador de red. Contáctenos hoy y garantice el cumplimiento normativo de su instalación eléctrica.</p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap cta-btns-wrap">
+                <a href="#contacto" class="btn-cta-main">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    Solicitar Visita Técnica
+                </a>
+                <a href="https://wa.me/573000000000" target="_blank" class="btn-cta-ghost">
+                    <i class="fab fa-whatsapp"></i>
+                    Contactar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- FIN CTA FINAL -->
+
+    <section id="contacto" class="py-5" style="background: #f0f6ff;">
+        <div class="container py-5">
+            <div class="row align-items-start g-5">
+
+                <!-- Columna izquierda: info -->
+                <div class="col-lg-5">
+                    <span class="d-inline-block mb-3" style="font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--azul-corp);">— Contáctenos</span>
+                    <h2 class="fw-bold mb-3" style="font-size:2.2rem; line-height:1.15;">Inicie su Proyecto <span style="color:var(--azul-corp);">Hoy</span></h2>
+                    <p class="text-muted mb-4" style="font-size:15px; line-height:1.7;">Complete el formulario y un ingeniero especialista se pondrá en contacto con usted en <strong>menos de 24 horas hábiles</strong>.</p>
+
+                    <div class="d-flex flex-column gap-3 mb-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <div style="width:44px;height:44px;background:var(--azul-corp);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 14px rgba(34,135,235,0.3);">
+                                <i class="fa fa-envelope" style="color:white;font-size:16px;"></i>
+                            </div>
+                            <div>
+                                <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;">Correo</div>
+                                <div style="font-size:14.5px;font-weight:600;color:#1e293b;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="45262a2b312426312a0524362c3631202b262c242029202631372c26246b262a28">[email&#160;protected]</a></div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div style="width:44px;height:44px;background:var(--azul-corp);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 14px rgba(34,135,235,0.3);">
+                                <i class="fa fa-phone" style="color:white;font-size:16px;"></i>
+                            </div>
+                            <div>
+                                <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;">Teléfono / WhatsApp</div>
+                                <div style="font-size:14.5px;font-weight:600;color:#1e293b;">(57) 300 000 0000</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div style="width:44px;height:44px;background:var(--azul-corp);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 14px rgba(34,135,235,0.3);">
+                                <i class="fa fa-clock" style="color:white;font-size:16px;"></i>
+                            </div>
+                            <div>
+                                <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;">Horario</div>
+                                <div style="font-size:14.5px;font-weight:600;color:#1e293b;">Lun–Vie 7am–6pm · Sáb 8am–12pm</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Promesa de respuesta -->
+                    <div style="background:white;border:1px solid #e2e8f0;border-left:4px solid var(--rojo-corp);border-radius:10px;padding:16px 20px;">
+                        <div style="font-size:12px;font-weight:700;color:var(--rojo-corp);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Promesa de respuesta</div>
+                        <div style="font-size:14px;color:#475569;line-height:1.6;">Cada solicitud es revisada por un técnico especialista. Recibirá una propuesta técnica y económica en <strong style="color:#1e293b;">menos de 24 horas hábiles.</strong></div>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: formulario mejorado -->
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow-lg" style="border-radius:18px; overflow:hidden;">
+
+                        <!-- Header de la tarjeta -->
+                        <div style="background:linear-gradient(135deg, var(--azul-deeper), var(--azul-corp)); padding:24px 32px;">
+                            <h5 style="color:white;font-weight:700;margin:0;font-size:17px;">
+                                <i class="fa-solid fa-clipboard-list me-2"></i> Solicitud de Servicio Técnico
+                            </h5>
+                            <p style="color:rgba(255,255,255,0.65);font-size:13px;margin:4px 0 0;">Todos los campos marcados con <span style="color:var(--rojo-corp);">*</span> son obligatorios</p>
+                        </div>
+
+                        <div class="p-4 p-md-5" style="background:white;">
+                            <form>
+                                <!-- Fila 1: Empresa + Contacto -->
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#64748b;">Nombre empresa <span style="color:var(--rojo-corp);">*</span></label>
+                                        <input type="text" class="form-control form-control-improved" placeholder="Ej. Industrias ABC S.A.S.">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#64748b;">Persona de contacto <span style="color:var(--rojo-corp);">*</span></label>
+                                        <input type="text" class="form-control form-control-improved" placeholder="Nombre y cargo">
+                                    </div>
+                                </div>
+
+                                <!-- Fila 2: Teléfono + Correo -->
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#64748b;">Teléfono / WhatsApp <span style="color:var(--rojo-corp);">*</span></label>
+                                        <input type="tel" class="form-control form-control-improved" placeholder="+57 300 000 0000">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#64748b;">Correo electrónico <span style="color:var(--rojo-corp);">*</span></label>
+                                        <input type="email" class="form-control form-control-improved" placeholder="correo@empresa.com">
+                                    </div>
+                                </div>
+
+                                <!-- Tipo de servicio -->
+                                <div class="mb-3">
+                                    <label class="form-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#64748b;">Tipo de servicio requerido <span style="color:var(--rojo-corp);">*</span></label>
+                                    <select class="form-select form-control-improved">
+                                        <option value="" disabled selected>Seleccione el servicio...</option>
+                                        <option>Instalación de medida directa</option>
+                                        <option>Instalación de medida semidirecta</option>
+                                        <option>Instalación de medida indirecta</option>
+                                        <option>Mantenimiento / Adecuación</option>
+                                        <option>Verificación técnica y acompañamiento OR</option>
+                                        <option>Consultoría normativa</option>
+                                        <option>No sé qué necesito — requiero diagnóstico</option>
+                                    </select>
+                                </div>
+
+                                <!-- Descripción del requerimiento -->
+                                <div class="mb-4">
+                                    <label class="form-label" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#64748b;">Descripción del requerimiento</label>
+                                    <textarea class="form-control form-control-improved" rows="4" placeholder="Describa su requerimiento: tipo de instalación, voltaje, capacidad, número de puntos de medida, estado actual, ubicación del proyecto u otros detalles relevantes..."></textarea>
+                                    <div style="font-size:11.5px;color:#94a3b8;margin-top:6px;"><i class="fa fa-circle-info me-1"></i> Entre más detalle nos comparta, más precisa será nuestra propuesta técnica.</div>
+                                </div>
+
+                                <button class="btn btn-cta w-100 py-3" type="button" style="font-size:16px;border-radius:8px;letter-spacing:0.5px;" onclick="alert('¡Solicitud enviada! Nos contactaremos en menos de 24 horas.')">
+                                    <i class="fa-solid fa-paper-plane me-2"></i> Enviar Solicitud de Cotización
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .form-control-improved {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 11px 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #1e293b;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-control-improved:focus {
+            border-color: var(--azul-corp);
+            box-shadow: 0 0 0 4px rgba(34,135,235,0.1);
+            background: white;
+            outline: none;
+        }
+        .form-control-improved::placeholder { color: #b0bac5; }
+    </style>
+
+    <!-- ══════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div class="footer-brand">
+                    <strong>⚡ Asistencia Eléctrica SAS</strong>
+                    <span>Grupos de Medida · Colombia</span>
+                </div>
+                <div class="footer-links d-flex gap-4 flex-wrap">
+                    <a href="#servicios">Servicios</a>
+                    <a href="#proyectos">Proyectos</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <p class="footer-copy">
+                © 2025 Asistencia Eléctrica SAS · NIT: 900.000.000-0 · Todos los derechos reservados ·
+                <a href="#">Política de Privacidad</a>
+            </p>
+        </div>
+    </footer>
+    <!-- FIN FOOTER -->
+
+    <a href="https://wa.me/573000000000" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Animación de contadores al hacer scroll
+        const counters = document.querySelectorAll('.count-up');
+
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-target'));
+                let current = 0;
+                const steps = 50;
+                const increment = target / steps;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
